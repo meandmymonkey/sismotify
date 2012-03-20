@@ -8,7 +8,7 @@ use Sismo\Commit;
 
 class HoustonNotifier extends Notifier
 {
-    const SOUND_DEFAULT = 'houston.wav';
+    const SOUND_DEFAULT = 'data/houston.wav';
 
     private $soundFail;
     private $soundSuccess;
@@ -16,13 +16,9 @@ class HoustonNotifier extends Notifier
 
     public function __construct($soundFail = self::SOUND_DEFAULT, $soundSuccess = null, $volume = 1)
     {
-        $this->soundFail    = (string) $soundFail;
-        $this->soundSuccess = (string) $soundSuccess;
-        $this->volume       = (float)  $volume;
-
-        if (self::SOUND_DEFAULT === $this->soundFail) {
-            $this->soundFail = __DIR__ . '/../../../data/houston.wav';
-        }
+        $this->soundFail    = $this->normalizePath($soundFail);
+        $this->soundSuccess = $this->normalizePath($soundSuccess);
+        $this->volume       = (float) $volume;
 
         if ($this->volume > 1) {
             $this->volume = 1;
@@ -44,13 +40,26 @@ class HoustonNotifier extends Notifier
 
     protected function play($file)
     {
-        if (!file_exists($file)) {
-            throw new \InvalidArgumentException(sprintf('Soundfile %s could not be found.'), $file);
-        }
-
         $p = new Process(sprintf('afplay "%s" --volume %s', $file, $this->volume));
         $p->setTimeout(30);
 
         $p->run();
+    }
+    protected function normalizePath($path)
+    {
+        if (!is_string($path)) {
+            return null;
+        }
+
+        // if given path is relative, create path relative to package root dir
+        if (0 !== strpos($path, '/')) {
+            $path = __DIR__ . '/../../../' . $path;
+        }
+
+        if (!file_exists($path)) {
+            throw new \InvalidArgumentException(sprintf('Soundfile %s could not be found.'), $path);
+        }
+
+        return $path;
     }
 }
