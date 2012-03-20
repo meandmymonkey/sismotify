@@ -14,7 +14,7 @@ class HoustonNotifier extends Notifier
     private $soundSuccess;
     private $volume;
 
-    public function __construct($soundFail = 'houston.wav', $soundSuccess = null, $volume = 1)
+    public function __construct($soundFail = self::SOUND_DEFAULT, $soundSuccess = null, $volume = 1)
     {
         $this->soundFail    = (string) $soundFail;
         $this->soundSuccess = (string) $soundSuccess;
