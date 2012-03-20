@@ -1,0 +1,23 @@
+{
+    "name": "meandmymonkey/sismotify",
+    "description": "Several Sismo notifiers of varying seriousness",
+    "type": "library",
+    "homepage": "http://github.com/meandmymonkey/sismotify",
+    "authors": [
+        {
+            "name": "Andreas Hucks",
+            "email": "andreas.hucks@duochrome.net",
+            "homepage": "http://github.com/meandmymonkey"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Duochrome": "src/"
+        }
+    },
+    "license": "MIT",
+	"require": {
+		"symfony/process": "*",
+        "kriswallsmith/buzz": "*"
+	}
+}

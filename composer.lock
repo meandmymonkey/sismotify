@@ -1,0 +1,16 @@
+{
+    "hash": "9ec3dcc4468cc9a2766a5a1bd676186a",
+    "packages": [
+        {
+            "package": "kriswallsmith/buzz",
+            "version": "dev-master",
+            "source-reference": "b88c3a4b22f74cd90f4457f3049ecffaf39d3052"
+        },
+        {
+            "package": "symfony/process",
+            "version": "dev-master",
+            "source-reference": "0aad81ae9f884cf7df6387cb52a11b5b4f07b3d6"
+        }
+    ],
+    "aliases": []
+}
