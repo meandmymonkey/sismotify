@@ -8,7 +8,7 @@ use Sismo\Commit;
 
 class HoustonNotifier extends Notifier
 {
-    const SOUND_DEFAULT = 'data/houston.wav';
+    const SOUND_DEFAULT = 'houston.wav';
 
     private $soundFail;
     private $soundSuccess;
@@ -51,9 +51,9 @@ class HoustonNotifier extends Notifier
             return null;
         }
 
-        // if given path is relative, create path relative to package root dir
+        // if given path is relative, it is meant relative to package root dir
         if (0 !== strpos($path, '/')) {
-            $path = __DIR__ . '/../../../' . $path;
+            $path = __DIR__ . '/../../../data/' . $path;
         }
 
         if (!file_exists($path)) {
