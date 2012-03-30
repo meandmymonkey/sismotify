@@ -26,7 +26,9 @@ Calls mission control if there is a problem. This Notifier is **Mac only** for n
 $notfier = new Duochrome\Sismo\HoustonNotifier();
 ```
 
-After the first couple of hundred failed builds, the audio message might start getting on your nerves a bit. For these cases, you can of course customize the failure sound, add a sound for successful builds, and adjust the volume:
+After the first couple of hundred failed builds, the audio message might start getting on
+your nerves a bit. For these cases, you can of course customize the failure sound, add a
+sound for successful builds, and adjust the volume:
 
 ```php
 $notfier = new Duochrome\Sismo\HoustonNotifier(
