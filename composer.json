@@ -1,6 +1,6 @@
 {
     "name": "meandmymonkey/sismotify",
-    "description": "Several Sismo notifiers of varying seriousness",
+    "description": "An audio Sismo notifier",
     "type": "library",
     "homepage": "http://github.com/meandmymonkey/sismotify",
     "authors": [
@@ -17,7 +17,6 @@
     },
     "license": "MIT",
 	"require": {
-		"symfony/process": "*",
-        "kriswallsmith/buzz": "*"
+		"symfony/process": "*"
 	}
 }
