@@ -1,11 +1,22 @@
 <?php
 
+/*
+ * (c) Andreas Hucks <andreas.hucks@duochrome.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Duochrome\Sismo;
 
 use Symfony\Component\Process\Process;
 use Sismo\Notifier;
 use Sismo\Commit;
 
+/**
+ * Calls mission control if there is a problem.
+ * **Mac only** for now.
+ */
 class HoustonNotifier extends Notifier
 {
     const SOUND_DEFAULT = 'houston.wav';
@@ -14,6 +25,13 @@ class HoustonNotifier extends Notifier
     private $soundSuccess;
     private $volume;
 
+    /**
+     * Constructor.
+     *
+     * @param string|null $soundFail    Audio file played when a build fails, absolute path or relative to data dir
+     * @param string|null $soundSuccess Audio file played when a build succeeds, absolute path or relative to data dir
+     * @param int         $volume       Volume to play the sounds at, between 0 = mute and 1 = current system volume
+     */
     public function __construct($soundFail = self::SOUND_DEFAULT, $soundSuccess = null, $volume = 1)
     {
         $this->soundFail    = $this->normalizePath($soundFail);
@@ -29,6 +47,9 @@ class HoustonNotifier extends Notifier
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function notify(Commit $commit)
     {
         if (!$commit->isSuccessful() && null !== $this->soundFail) {
@@ -38,6 +59,11 @@ class HoustonNotifier extends Notifier
         }
     }
 
+    /**
+     * Play an audio file.
+     *
+     * @param string $file The filepath
+     */
     protected function play($file)
     {
         $p = new Process(sprintf('afplay "%s" --volume %s', $file, $this->volume));
@@ -45,6 +71,14 @@ class HoustonNotifier extends Notifier
 
         $p->run();
     }
+
+    /**
+     *
+     *
+     * @param string $path
+     * @return null|string
+     * @throws \InvalidArgumentException When the file does not exist
+     */
     protected function normalizePath($path)
     {
         if (!is_string($path)) {
