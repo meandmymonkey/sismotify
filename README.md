@@ -1,6 +1,6 @@
 # Sismotify
 
-A couple of notifiers for [Sismo](http://sismo.sensiolabs.org).
+A notifier for [Sismo](http://sismo.sensiolabs.org).
 
 ## Install
 
