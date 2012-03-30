@@ -9,7 +9,7 @@ Create a composer.json and install
 ```json
 {
     "require": {
-        "duochrome/sismotify": "*"
+        "meandmymonkey/sismotify": "*"
     }
 }
 ```
