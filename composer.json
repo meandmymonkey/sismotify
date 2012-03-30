@@ -12,11 +12,12 @@
     ],
     "autoload": {
         "psr-0": {
-            "Duochrome": "src/"
+            "Duochrome": "src"
         }
     },
     "license": "MIT",
 	"require": {
+        "php": ">=5.3.2",
 		"symfony/process": "*"
 	}
 }
